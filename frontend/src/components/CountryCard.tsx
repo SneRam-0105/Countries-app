@@ -1,5 +1,7 @@
+import { CardActions } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
 
 interface CountryCardProps {
   country: {
@@ -8,7 +10,8 @@ interface CountryCardProps {
     population: number;
     flags: { png: string };
     region: string;
-    subregion: string;
+    subregion?: string;
+    cca3: string; // country code
   };
 }
 
@@ -29,6 +32,9 @@ const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
       >
         View Details
       </Link>
+      <CardActions sx= {{mt:"auto", justifyContent: "flex-end"}}>
+        <FavoriteButton country={country} />
+        </CardActions>
     </div>
   );
 };
