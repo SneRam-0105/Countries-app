@@ -5,6 +5,8 @@ import { SupabaseService } from '../services/supabase.service';
 export class TestController {
   constructor(private readonly supabaseService: SupabaseService) {}
 
+  // localhost:5180/test/supabase
+
   @Get('supabase')
   async testConnection() {
     try {
