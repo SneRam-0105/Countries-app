@@ -11,6 +11,16 @@ import WeatherInfo from "./WeatherCard"; // Import WeatherInfo
 import { weatherApi } from "../api/services/weather";
 import { WeatherData } from "../types/weather";
 
+// MUI Components
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  Grid,
+} from "@mui/material";
+
 const CountryDetail: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
@@ -37,10 +47,12 @@ const CountryDetail: React.FC = () => {
     if (country?.capital) {
       const fetchWeather = async () => {
         setWeatherLoading(true);
+
         try {
           const response = await weatherApi.getWeatherByCity(
             country.capital?.[0] || ""
           );
+          console.log(response);
           setWeatherData(response.data);
         } catch {
           setWeatherError("Could not fetch weather data");
@@ -53,20 +65,50 @@ const CountryDetail: React.FC = () => {
     }
   }, [country]);
 
-  if (loading) return <h3>Loading country details... </h3>;
-  if (error) return <h3>{error}</h3>;
-  if (!country) return <h3>Country not found. Please try again.</h3>;
+  if (loading)
+    return <Typography variant="h5">Loading country details...</Typography>;
+  if (error)
+    return (
+      <Typography variant="h5" color="error">
+        {error}
+      </Typography>
+    );
+  if (!country)
+    return (
+      <Typography variant="h5">Country not found. Please try again.</Typography>
+    );
 
   return (
-    <>
-      <div className="country-detail">
-        <h1>{country.name.common}</h1>
-        <img src={country.flags.png} alt={`${country.name.common} flag`} />
-        <p>Capital: {country.capital?.[0] || "N/A"}</p>
-        <p>Population: {country.population.toLocaleString()}</p>
-        <p>Region: {country.region}</p>
-        <p>Subregion: {country.subregion}</p>
-      </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        mt: 4,
+      }}
+    >
+      {/* Country Details Card */}
+      <Card sx={{ maxWidth: 500, textAlign: "center", mb: 4 }}>
+        <CardMedia
+          component="img"
+          height="200"
+          image={country.flags.png}
+          alt={`${country.name.common} flag`}
+        />
+        <CardContent>
+          <Typography variant="h4">{country.name.common}</Typography>
+          <Typography variant="body1">
+            Capital: {country.capital?.[0] || "N/A"}
+          </Typography>
+          <Typography variant="body1">
+            Population: {country.population.toLocaleString()}
+          </Typography>
+          <Typography variant="body1">Region: {country.region}</Typography>
+          <Typography variant="body1">
+            Subregion: {country.subregion}
+          </Typography>
+        </CardContent>
+      </Card>
 
       {/* Weather Info Component */}
       <WeatherInfo
@@ -74,7 +116,7 @@ const CountryDetail: React.FC = () => {
         loading={weatherLoading}
         error={weatherError}
       />
-    </>
+    </Box>
   );
 };
 
