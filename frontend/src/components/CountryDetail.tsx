@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   fetchAllCountries,
@@ -19,6 +19,7 @@ import {
   Typography,
   Box,
   Grid,
+  Button,
 } from "@mui/material";
 
 const CountryDetail: React.FC = () => {
@@ -28,6 +29,7 @@ const CountryDetail: React.FC = () => {
   const countries = useAppSelector(selectAllCountries);
   const loading = useAppSelector(selectCountriesLoading);
   const error = useAppSelector(selectCountriesError);
+  const navigate = useNavigate();
 
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
@@ -116,6 +118,16 @@ const CountryDetail: React.FC = () => {
         loading={weatherLoading}
         error={weatherError}
       />
+
+      <Button
+        onClick={() => navigate("/countries")}
+        sx={{
+          mb: 4,
+          backgroundColor: (theme) => theme.palette.secondary.main,
+        }}
+      >
+        Back To Countries
+      </Button>
     </Box>
   );
 };

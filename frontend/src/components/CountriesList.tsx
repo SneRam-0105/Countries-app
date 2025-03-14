@@ -7,7 +7,7 @@ import {
   selectCountriesError,
 } from "../store/slices/countriesSlice";
 import CountryCard from "./CountryCard";
-import { Country } from "../types/country"; // Adjust the import path as necessary
+import { Country } from "../types/country";
 import {
   Box,
   CircularProgress,
@@ -22,6 +22,8 @@ import {
   SelectChangeEvent,
   InputAdornment,
   Chip,
+  Pagination,
+  Stack,
 } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
@@ -33,6 +35,10 @@ const CountriesList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountry, setFilteredCountry] = useState<Country[]>([]);
   const [selectedRegion, setSelectedRegion] = useState("");
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
   useEffect(() => {
     if (countries.length === 0) {
@@ -71,7 +77,20 @@ const CountriesList = () => {
     }
 
     setFilteredCountry(result);
+    setCurrentPage(1); // Reset to page 1 on filter change
   }, [countries, searchTerm, selectedRegion]);
+
+  // Pagination Logic
+  const totalPages = Math.ceil(filteredCountry.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedCountries = filteredCountry.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
 
   // Get unique regions for filter dropdown
   const regions = [
@@ -81,6 +100,7 @@ const CountriesList = () => {
   const handleRegionChange = (event: SelectChangeEvent<string>) => {
     setSelectedRegion(event.target.value);
   };
+
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedRegion("");
@@ -144,8 +164,9 @@ const CountriesList = () => {
           </Select>
         </FormControl>
       </Box>
+
       {(searchTerm || selectedRegion) && (
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
           <Typography variant="body2">Active filters:</Typography>
           {searchTerm && (
             <Chip
@@ -179,12 +200,24 @@ const CountriesList = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        {filteredCountry.map((country, index) => (
+        {paginatedCountries.map((country) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={country.cca3}>
-            <CountryCard country={country} key={index} />
+            <CountryCard country={country} />
           </Grid>
         ))}
       </Grid>
+
+      {/* MUI Pagination Component */}
+      <Stack spacing={2} alignItems="center" sx={{ mt: 3 }}>
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+          shape="rounded"
+          size="large"
+        />
+      </Stack>
     </Container>
   );
 };

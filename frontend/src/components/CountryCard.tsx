@@ -39,7 +39,10 @@ const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
         height="140"
         image={country.flags.png}
         alt={`${country.name.common} flag`}
-        sx={{ objectFit: "cover", borderBottom: "1px solid #ddd" }}
+        sx={{
+          objectFit: "cover",
+          borderBottom: "1px solid #ddd",
+        }}
       />
 
       {/* Country Details */}
@@ -67,7 +70,12 @@ const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
           to={`/country/${encodeURIComponent(country.name.common)}`}
           variant="contained"
           size="small"
-          sx={{ textTransform: "none" }}
+          // sx={{ textTransform: "none" }}
+          sx={{
+            textTransform: "none",
+            backgroundColor: (theme) => theme.palette.secondary.main,
+            color: (theme) => theme.palette.primary.main,
+          }}
         >
           View Details
         </Button>

@@ -5,11 +5,13 @@ export interface WeatherData {
       humidity: number;
       pressure: number;
     };
-    weather: Array<{
+    weather: [
+      {
       main: string;
       description: string;
       icon: string;
-    }>;
+    }
+  ];
     wind: {
       speed: number;
     };

@@ -60,7 +60,7 @@ const FavoriteButton = ({ country, onToggle }: FavoriteButtonProps) => {
       <IconButton
         onClick={handleToggleFavorite}
         disabled={loading}
-        color="primary"
+        color="secondary"
       >
         {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </IconButton>
