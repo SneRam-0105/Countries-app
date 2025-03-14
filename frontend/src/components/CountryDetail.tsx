@@ -109,6 +109,7 @@ const CountryDetail: React.FC = () => {
           <Typography variant="body1">
             Subregion: {country.subregion}
           </Typography>
+          <Typography>Location : {country.location?.capital}</Typography>
         </CardContent>
       </Card>
 

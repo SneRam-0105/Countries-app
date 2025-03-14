@@ -15,6 +15,10 @@ export interface Currency {
     symbol:string;
 }
 
+export interface CapitalCity {
+    capital:string;
+}
+
 // to combine the previous interfaces into one
 export interface Country {
     name:CountryName;
@@ -25,6 +29,7 @@ export interface Country {
     flags : CountryFlags;
     cca3:string; // country code
     currencies?: Record<string, Currency>;
+    location?: CapitalCity;
 }
 
 export interface CountryState{

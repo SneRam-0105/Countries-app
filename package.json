@@ -14,6 +14,7 @@
         "build:frontend": "cd frontend && npm run build"
     },
     "devDependencies": {
+        "@types/jest": "^29.5.14",
         "concurrently": "^8.2.2"
     },
     "dependencies": {
