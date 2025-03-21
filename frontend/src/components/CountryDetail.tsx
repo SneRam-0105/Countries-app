@@ -54,8 +54,9 @@ const CountryDetail: React.FC = () => {
           const response = await weatherApi.getWeatherByCity(
             country.capital?.[0] || ""
           );
-          console.log(response);
-          setWeatherData(response.data);
+          console.log(response.data);
+
+          setWeatherData(response as WeatherData);
         } catch {
           setWeatherError("Could not fetch weather data");
         } finally {
@@ -89,6 +90,17 @@ const CountryDetail: React.FC = () => {
         mt: 4,
       }}
     >
+      <Button
+        onClick={() => navigate("/countries")}
+        sx={{
+          mb: 4,
+          marginTop: 4,
+
+          backgroundColor: (theme) => theme.palette.secondary.main,
+        }}
+      >
+        Back To Countries
+      </Button>
       {/* Country Details Card */}
       <Card sx={{ maxWidth: 500, textAlign: "center", mb: 4 }}>
         <CardMedia
@@ -118,16 +130,6 @@ const CountryDetail: React.FC = () => {
         loading={weatherLoading}
         error={weatherError}
       />
-
-      <Button
-        onClick={() => navigate("/countries")}
-        sx={{
-          mb: 4,
-          backgroundColor: (theme) => theme.palette.secondary.main,
-        }}
-      >
-        Back To Countries
-      </Button>
     </Box>
   );
 };

@@ -10,6 +10,7 @@ import CountriesList from "./components/CountriesList";
 import { AuthRedirect } from "./components/Auth/AuthRedirect";
 import CountryDetail from "./components/CountryDetail";
 import Favourites from "./components/Favourites";
+import GuessCapitalGame from "./components/GuessCapitalGame";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Navigation />
           <Box sx={{ p: 3 }}>
             <Routes>
-              <Route path="/" element={<div>Home is here</div>} />
+              <Route path="/" element={<GuessCapitalGame />} />
               <Route
                 path="/login"
                 element={
@@ -43,7 +44,7 @@ function App() {
                 path="/favorites"
                 element={
                   <ProtectedRoute>
-                    <Favourites/>
+                    <Favourites />
                   </ProtectedRoute>
                 }
               />

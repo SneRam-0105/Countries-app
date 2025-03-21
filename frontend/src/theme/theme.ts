@@ -14,7 +14,8 @@ export const theme = createTheme({
     },
 
   },
-  typography: {
+
+typography: {
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
