@@ -51,14 +51,14 @@ const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
           {country.name.common}
         </Typography>
         {country.capital && (
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.primary" fontWeight={"bold"}>
             Capital: {country.capital.join(", ")}
           </Typography>
         )}
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Population: {country.population.toLocaleString()}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           Region: {country.region}
         </Typography>
       </CardContent>
@@ -73,8 +73,8 @@ const CountryCard: React.FC<CountryCardProps> = ({ country }) => {
           // sx={{ textTransform: "none" }}
           sx={{
             textTransform: "none",
-            backgroundColor: (theme) => theme.palette.secondary.main,
-            color: (theme) => theme.palette.primary.main,
+            background: (theme) => theme.palette.secondary.main,
+            color: (theme) => theme.palette.text.primary,
           }}
         >
           View Details

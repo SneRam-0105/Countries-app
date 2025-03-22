@@ -11,14 +11,23 @@ import {
   Grid,
   Box,
 } from "@mui/material";
+import { fetchAllCountries } from "../store/slices/countriesSlice";
+import { useAppDispatch } from "../store/hooks";
 
 const GuessCapitalGame: React.FC = () => {
+  const dispatch = useAppDispatch();
   const countries = useSelector(
     (state: RootState) => state.countries.countries
   ) as Country[];
   const [currentQuestion, setCurrentQuestion] = useState<Country | null>(null);
   const [options, setOptions] = useState<string[]>([]);
   const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    if (countries.length === 0) {
+      dispatch(fetchAllCountries());
+    }
+  }, [dispatch, countries.length]);
 
   useEffect(() => {
     if (countries.length > 0) {
@@ -64,39 +73,21 @@ const GuessCapitalGame: React.FC = () => {
   }
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <Container maxWidth="md" sx={{ mt: 6 }}>
       <Grid container spacing={3} justifyContent="flex-end">
         <Grid item xs={12} md={5}>
-          <Card elevation={0} sx={{ p: 2, boxShadow: "none", m: 0 }}>
-            <CardContent>
-              <Typography variant="h4" color="Violet" gutterBottom>
-                World Explorer!
-              </Typography>
-              <Typography variant="body1" fontStyle={"italic"} paragraph>
-                "The world is a book, and those who do not travel read only one
-                page." - Saint Augustine
-              </Typography>
-              <Typography variant="body1" paragraph>
-                Explore the diverse cultures and fascinating facts about
-                countries around the globe.
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card elevation={0} sx={{ p: 2, boxShadow: "none", m: 0 }}>
-            <CardContent>
-              {/* <Typography
-                variant="h5"
-                color="Violet"
-                fontWeight={"Bold"}
-                gutterBottom
-              >
-                About this Site
-              </Typography>
-              <Typography variant="body2" fontWeight={"Bold"} paragraph>
-                This site helps you learn more about the world’s countries. Test
-                your knowledge with our quiz!
-              </Typography> */}
-            </CardContent>
+          <Card elevation={0} sx={{ p: 2, boxShadow: "none", mt: 9 }}>
+            <Typography variant="h4" color="Violet" gutterBottom>
+              World Explorer!
+            </Typography>
+            <Typography variant="body1" fontStyle={"italic"} paragraph>
+              "The world is a book, and those who do not travel read only one
+              page." - Saint Augustine
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Explore the diverse cultures and fascinating facts about countries
+              around the globe.
+            </Typography>
           </Card>
         </Grid>
         <Grid item xs={12} md={7}>

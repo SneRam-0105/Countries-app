@@ -1,11 +1,13 @@
-import { AppBar, Button, Toolbar } from "@mui/material";
+import { AppBar, Button, Toolbar, IconButton } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../theme/useTheme";
 import { Link as RouterLink } from "react-router-dom";
-import { Favorite, Lock } from "@mui/icons-material";
+import { Favorite, Lock, DarkMode, LightMode } from "@mui/icons-material";
 import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
 
 export const Navigation = () => {
   const { user, signOut } = useAuth();
+  const { themeMode, toggleTheme } = useTheme();
 
   function HomeIcon(props: SvgIconProps) {
     return (
@@ -14,6 +16,7 @@ export const Navigation = () => {
       </SvgIcon>
     );
   }
+
   return (
     <AppBar position="static" color="secondary" sx={{ mb: 3 }}>
       <Toolbar>
@@ -34,7 +37,6 @@ export const Navigation = () => {
           <Button color="inherit" component={RouterLink} to="/test">
             Test
           </Button>
-
           {user && (
             <Button
               color="inherit"
@@ -62,6 +64,11 @@ export const Navigation = () => {
               Login
             </Button>
           )}
+
+          {/* Dark Mode Toggle Button */}
+          <IconButton color="inherit" onClick={toggleTheme}>
+            {themeMode === "light" ? <DarkMode /> : <LightMode />}
+          </IconButton>
         </div>
       </Toolbar>
     </AppBar>

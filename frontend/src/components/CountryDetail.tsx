@@ -111,7 +111,7 @@ const CountryDetail: React.FC = () => {
         />
         <CardContent>
           <Typography variant="h4">{country.name.common}</Typography>
-          <Typography variant="body1">
+          <Typography variant="body1" fontWeight={"bold"}>
             Capital: {country.capital?.[0] || "N/A"}
           </Typography>
           <Typography variant="body1">

@@ -182,8 +182,8 @@ const CountriesList = () => {
               label={`Region: ${selectedRegion}`}
               onDelete={() => setSelectedRegion("")}
               size="small"
-              color="primary"
               variant="outlined"
+              sx={{ color: (theme) => theme.palette.secondary.main }}
             />
           )}
           <Chip
