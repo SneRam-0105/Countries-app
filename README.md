@@ -92,7 +92,7 @@ Light Mode
 
 ## Authors and acknowledgment
 
-Martin Holland
+A big thanks to Martin for guiding us and teaching new concepts throughout the project.
 
 - GitHub https://github.com/martin-holland/Countries-Fullstack
 - Weather data from - https://openweathermap.org/api
@@ -101,4 +101,4 @@ Martin Holland
 
 - I would like to continue building this website for explorers who could plan their next adventure with all the top things to do in the country and with much more details attached to each country.
 
-- I would also like to deploy it so it is easy accesible for the users.
+- I would also like to deploy my app so it is easy accesible for the users.
