@@ -1,6 +1,9 @@
-# Countries Fullstack
+# World Explorer!
 
 A full-stack application with NestJS backend and React frontend.
+This website is for curious explorers and want to know more about countries of the world. User can explore basic information about each country and weather in the capital city.
+
+![alt text](Dark_mode_ss.png)
 
 ## Project Structure
 
@@ -15,29 +18,30 @@ project-root/
 - Node.js (v18 or higher recommended)
 - npm (comes with Node.js)
 
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone <your-repository-url>
-cd <project-directory>
-```
-
-2. Install all dependencies (both frontend and backend):
-
-```bash
-npm install
-npm run install:all
-```
-
 ## Development
 
-Start both frontend and backend development servers:
+1. Clone this repository
 
-```bash
-npm run dev
-```
+   ```bash
+   git clone https://github.com/SneRam-0105/Countries-app.git
+   cd Countries-app
+   ```
+
+2. install the dependencies using the commands below:
+
+   ```bash
+   npm install
+   cd frontend
+   npm install
+   cd ..\backend
+   npm install
+   ```
+
+3. Start both frontend and backend development servers(from the root folder in the repository):
+
+   ```bash
+   npm run dev
+   ```
 
 The applications will be available at:
 
@@ -72,13 +76,29 @@ SUPABASE_ANON_KEY=your-anon-key
   - TypeScript
   - Vite
 - **Backend:**
+
   - NestJS
   - TypeScript
   - Supabase
 
-## Development Notes
+- ## Setup and usage
 
-- The backend includes CORS configuration for the frontend port (5180)
-- TypeScript is configured for both frontend and backend
-- ESLint and Prettier are set up for code formatting
-- Both applications include hot-reload functionality for development
+Live page [here] https://github.com/SneRam-0105/Countries-app
+
+## Other Screenshots
+
+Light Mode
+![alt text](Light_mode_ss.png)
+
+## Authors and acknowledgment
+
+Martin Holland
+
+- GitHub https://github.com/martin-holland/Countries-Fullstack
+- Weather data from - https://openweathermap.org/api
+
+## Future Enhancements
+
+- I would like to continue building this website for explorers who could plan their next adventure with all the top things to do in the country and with much more details attached to each country.
+
+- I would also like to deploy it so it is easy accesible for the users.
